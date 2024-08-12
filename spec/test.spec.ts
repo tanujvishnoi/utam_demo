@@ -1,4 +1,4 @@
-import demo from "@utam-pageObjects/demo"
+import demo from '#utam-pageObjects/demo'
 
 describe("reproduce truncate error stack", () => {
 
@@ -39,7 +39,7 @@ describe("reproduce truncate error stack", () => {
      * wait for hidden element visibility 
      */
 
-    it("Case 4: Wait for visibility of hidden search input", async () => {
+    fit("Case 4: Wait for visibility of hidden search input", async () => {
         await browser.url("https://www.shopsite.com/demo.html")
         let demoPage = await utam.load(demo)
         await demoPage.waitForSearchInputToVisible()
@@ -55,9 +55,10 @@ describe("reproduce truncate error stack", () => {
         await browser.url("https://www.shopsite.com/demo.html")
         let demoPage = await utam.load(demo)
         let searchInput = await demoPage.getSearchInput()
-        await searchInput.waitForVisible();
         await searchInput.waitFor(()=>{
             searchInput.waitForVisible()
+        },{
+            message: "I am freaking out"
         })
        
     })

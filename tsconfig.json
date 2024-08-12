@@ -1,19 +1,22 @@
 {
+    "extends": "@tsconfig/node20/tsconfig.json",
+    "include": [
+        "spec/*"
+    ],
     "compilerOptions": {
-        "moduleResolution": "node",
-        "target": "es2019",
-        "esModuleInterop": true,
-        "baseUrl": "./",
+        "allowJs": true,
+        "strict": false,
+        "allowImportingTsExtensions": true,
         "types": [
-            "node",
-            "webdriverio/async",
+           "node",
+            "@types/jasmine",
+            "@wdio/globals/types",
             "@wdio/jasmine-framework",
-            "expect-webdriverio",
             "wdio-utam-service"
         ],
         "paths": {
-            "@utam-pageObjects/*": [
-                "pageObjects/*"
+            "#utam-pageObjects/*": [
+                "./pageObjects/*"
             ]
         }
     }

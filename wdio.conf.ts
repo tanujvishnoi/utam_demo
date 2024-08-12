@@ -4,7 +4,6 @@ import path from 'path';
 
 const isRemote = process.argv.some(arg => arg === '--remote');
 // Store the directory path in a global, which allows us to access this path inside our tests
-global.downloadDir = path.join(__dirname, '..', 'reports');
 
 export const config: Options.Testrunner = {
     //
@@ -35,14 +34,6 @@ export const config: Options.Testrunner = {
         },
         // tsconfig-paths is only used if "tsConfigPathsOpts" are provided, if you
         // do please make sure "tsconfig-paths" is installed as dependency
-        tsConfigPathsOpts: {
-            baseUrl: './',
-            paths: {
-                "@utam-pageObjects/*": [
-                    "pageObjects/*"
-                ]
-            }
-        }
     },
     //
     // ==================
@@ -112,7 +103,8 @@ export const config: Options.Testrunner = {
                 'disable-extensions',
                 'disable-popup-blocking',
                 'disable-notifications',
-                'disable-login-animations'
+                'disable-login-animations',
+                'disable-search-engine-choice-screen'
             ],
             prefs: {
                 'profile.default_content_settings.popups': 0,
@@ -170,12 +162,14 @@ export const config: Options.Testrunner = {
     //
     // Default request retries count
     connectionRetryCount: 3,
+    waitforInterval: 2_000,
     //
     // Test runner services
     // Services take over a specific job you don't want to take care of. They enhance
     // your test setup with almost no effort. Unlike plugins, they don't add new
     // commands. Instead, they hook themselves up into the test process.
     services: [...(isRemote ? [] : ['chromedriver']), [UtamWdioService, { implicitTimeout: 0 }]],
+ //   services: [...(isRemote ? [] : ['chromedriver']), [UtamWdioService, { implicitTimeout: 0 }]],
 
     // Framework you want to run your specs with.
     // The following are supported: Mocha, Jasmine, and Cucumber
