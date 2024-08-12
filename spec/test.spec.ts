@@ -51,7 +51,7 @@ describe("reproduce truncate error stack", () => {
      * get hidden element then wait for visibility 
      */
 
-    it("Case 5: Get hidden element ,then wait for visibility", async () => {
+    fit("Case 5: Get hidden element ,then wait for visibility", async () => {
         await browser.url("https://www.shopsite.com/demo.html")
         let demoPage = await utam.load(demo)
         let searchInput = await demoPage.getSearchInput()
