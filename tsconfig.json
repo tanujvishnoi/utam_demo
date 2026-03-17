@@ -4,9 +4,11 @@
         "spec/*"
     ],
     "compilerOptions": {
+        "sourceMap": true,
         "allowJs": true,
         "strict": false,
         "allowImportingTsExtensions": true,
+        "removeComments": false,
         "types": [
            "node",
             "@types/jasmine",

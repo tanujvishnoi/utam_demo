@@ -1,0 +1,12 @@
+{
+    "pageObjectsFileMask": [
+        "./__utam__/**/*.utam.json"
+    ],
+    "pageObjectsOutputDir": "pageObjects",
+    "moduleTarget": "module",
+    "module": "utam",
+    "interruptCompilerOnError": false,
+    "alias": {
+        "pObject": "#utam-pageObjects"
+    }
+}

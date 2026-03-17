@@ -6,7 +6,8 @@ const isRemote = process.argv.some(arg => arg === '--remote');
 // Store the directory path in a global, which allows us to access this path inside our tests
 
 export const config: Options.Testrunner = {
-    //
+
+    execArgv: ['--enable-source-maps', '--trace-uncaught'],
     // ====================
     // Runner Configuration
     // ====================
@@ -169,7 +170,6 @@ export const config: Options.Testrunner = {
     // your test setup with almost no effort. Unlike plugins, they don't add new
     // commands. Instead, they hook themselves up into the test process.
     services: [...(isRemote ? [] : ['chromedriver']), [UtamWdioService, { implicitTimeout: 0 }]],
- //   services: [...(isRemote ? [] : ['chromedriver']), [UtamWdioService, { implicitTimeout: 0 }]],
 
     // Framework you want to run your specs with.
     // The following are supported: Mocha, Jasmine, and Cucumber
@@ -223,17 +223,18 @@ export const config: Options.Testrunner = {
         // The Jasmine framework allows interception of each assertion in order to log the state of the application
         // or website depending on the result. For example, it is pretty handy to take a screenshot every time
         // an assertion fails.
-        expectationResultHandler: async function (passed, assertion) {
-            if (!passed) {
-                try {
-                    const filename = (assertion.error?.message || assertion.message).trim()
-                        .replace(/[\r\n"<>:\/\\|?*]/g, ' ').slice(0, 50);
-                    await browser.saveScreenshot(`./reports/assertionError_${filename}_${Date.now()}.png`);
-                } catch (error) {
-                    console.log(error);
-                }
-            }
-        },
+        // expectationResultHandler commented out - causes session errors after test failures
+        // expectationResultHandler: async function (passed, assertion) {
+        //     if (!passed) {
+        //         try {
+        //             const filename = (assertion.error?.message || assertion.message).trim()
+        //                 .replace(/[\r\n"<>:\/\\|?*]/g, ' ').slice(0, 50);
+        //             await browser.saveScreenshot(`./reports/assertionError_${filename}_${Date.now()}.png`);
+        //         } catch (error) {
+        //             console.log(error);
+        //         }
+        //     }
+        // },
     },
 
     //

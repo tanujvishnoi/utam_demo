@@ -14,7 +14,6 @@
     "@wdio/local-runner": "^8.39.1",
     "@wdio/reporter": "^8.39.0",
     "@wdio/spec-reporter": "^8.39.0",
-    "@wdio/utils": "^7.33.0",
     "chromedriver": "latest",
     "jasmine": "^5.0.0",
     "rimraf": "^3.0.2",
@@ -25,10 +24,10 @@
   },
   "scripts": {
     "clean": "rimraf pageObjects/ reports/",
-    "build": "utam -c utam.config.ts",
-    "test": "wdio run wdio.conf.ts --suite all"
+    "build": "utam -c utam.config.json",
+    "test": "wdio run wdio.conf.ts --spec ./spec/test.spec.ts"
   },
   "imports": {
-    "#utam-pageObjects/*":"./pageObjects/*.js"
+    "#utam-pageObjects/*": "./pageObjects/*.js"
   }
 }
